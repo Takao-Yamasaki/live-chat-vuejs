@@ -6,6 +6,7 @@
       <input type="email" require placeholder="メールアドレス" v-model="email">
       <input type="password" require placeholder="パスワード" v-model="password">
       <input type="password" require placeholder="パスワード（確認用）" v-model="passwordConfirmation">
+      <div class = "error">{{ error }}</div>
       <button>登録する</button>
     </form>
   </div>
@@ -20,13 +21,16 @@ export default {
       name: '',
       email: '',
       password: '',
-      passwordConfirmation:''
+      passwordConfirmation:'',
+      error: null
     }
   },
   methods: {
     // 非同期処理
     // Axiosを使って、RailsのサインアップAPIと通信を行う
     async signUp() {
+      // 初期化
+      this.error = null
       // エラーハンドリング
       try {
         const res = await axios.post('http://localhost:3000/auth', {
@@ -36,9 +40,15 @@ export default {
           password_confirmation: this.passwordConfirmation
           }
         )
+        // レスポンスが返ってこない場合、エラーを発生させる
+        if (!res) {
+          throw new Error('アカウントを登録できませんでした')
+        }
         console.log({res})
         return res
+        // Tryの中でエラーになったら、アカウントを登録できませんでしたが返ってくる
       } catch(error) {
+        this.error = 'アカウントを登録できませんでした'
         console.log(error)
       }
     }
