@@ -2,7 +2,7 @@
   <div>
     <h1>{{ title }}</h1>
     <!-- TestComponentのHTMLが出力される -->
-    <TestComponent/>
+    <TestComponent message="コンポーネントにデータが渡されています"/>
   </div>
 </template>
 
