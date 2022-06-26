@@ -2,7 +2,9 @@
   <div>
     <h1>{{ title }}</h1>
     <!-- TestComponentのHTMLが出力される -->
-    <TestComponent :isEnabled="isEnabled" message="コンポーネントにデータが渡されています"/>
+    <!-- 子コンポーネントで$emitメソッドが実行された場合に、親コンポーネントのtoggleメソッドを実行する -->
+    <TestComponent @toggle="toggle" message="コンポーネントにデータが渡されています"/>
+    <p v-if="isEnabled">こんにちは</p>
   </div>
 </template>
 
@@ -39,3 +41,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+p {
+  font-size: 20px;
+  color: red;
+}
+</style>
