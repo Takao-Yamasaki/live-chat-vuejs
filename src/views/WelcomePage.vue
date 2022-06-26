@@ -1,14 +1,20 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <p v-if="isEnabled">{{ subtitle }}</p>
-    <button @dblclick="toggle">トグルする</button>
-    <p>{{ text }}</p>
+    <!-- TestComponentのHTMLが出力される -->
+    <TestComponent/>
   </div>
 </template>
 
 <script>
+// TestComponentの読み込み
+import TestComponent from '../components/TestComponent.vue'
+
 export default {
+  // 読み込んだコンポーネントの定義
+  components: {
+    TestComponent
+  },
   data() {
     return {
       title: '初めてのVue.jsアプリです!',
