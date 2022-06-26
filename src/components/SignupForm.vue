@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -22,8 +24,23 @@ export default {
     }
   },
   methods: {
+    // 非同期処理
+    // Axiosを使って、RailsのサインアップAPIと通信を行う
     async signUp() {
-      console.log(this.name, this.email, this.password, this.passwordConfirmation)
+      // エラーハンドリング
+      try {
+        const res = await axios.post('http://localhost:3000/auth', {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.passwordConfirmation
+          }
+        )
+        console.log({res})
+        return res
+      } catch(error) {
+        console.log(error)
+      }
     }
   }
 }
