@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>アカウント登録</h2>
-    <form>
+    <form @submit.prevent="signUp">
       <input type="text" require placeholder="名前" v-model="name">
       <input type="email" require placeholder="メールアドレス" v-model="email">
       <input type="password" require placeholder="パスワード" v-model="password">
@@ -19,6 +19,11 @@ export default {
       email: '',
       password: '',
       passwordConfirmation:''
+    }
+  },
+  methods: {
+    async signUp() {
+      console.log(this.name, this.email, this.password, this.passwordConfirmation)
     }
   }
 }
