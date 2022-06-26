@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>{{ 3 + 3 }}</h1>
-    <p>{{ subtitle }}</p>
+    <h1>{{ title }}</h1>
+    <p v-if="isEnabled">{{ subtitle }}</p>
   </div>
 </template>
 
@@ -10,7 +10,8 @@ export default {
   data() {
     return {
       title: '初めてのVue.jsアプリです!',
-      subtitle: 'ようこそ'
+      subtitle: 'ようこそ',
+      isEnabled: true
     }
   }
 }
