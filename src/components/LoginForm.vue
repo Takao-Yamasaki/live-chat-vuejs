@@ -12,6 +12,8 @@
 
 <script>
 import axios from 'axios'
+import setItem from '../auth/setItem'
+
 export default {
   emits: ['redirectToChatRoom'],
   data () {
@@ -38,10 +40,7 @@ export default {
 
         if (!this.error) {
           // ヘッダー情報の取得
-          window.localStorage.setItem('access-token', res.headers['access-token'])
-          window.localStorage.setItem('client', res.headers.client)
-          window.localStorage.setItem('uid', res.headers.uid)
-          window.localStorage.setItem('name', res.data.data.name)
+          setItem(res.headers, res.data.data.name)
           // 子から親に値を渡す
           this.$emit('redirectToChatRoom')
         }
