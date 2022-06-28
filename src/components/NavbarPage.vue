@@ -30,11 +30,15 @@ export default {
           }
         })
 
+        console.log({ res })
+
         console.log("ログアウトしました")
         window.localStorage.removeItem('access-token')
         window.localStorage.removeItem('client')
         window.localStorage.removeItem('uid')
         window.localStorage.removeItem('name')
+        
+        this.$router.push({ name: 'Welcome' })
 
         return res
       } catch (error) {
