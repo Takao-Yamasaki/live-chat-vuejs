@@ -2,6 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import WelcomePage from '../views/WelcomePage'
 import ChatroomPage from '../views/ChatroomPage'
 
+// ナビゲーションガードの設定
+const requireAuth = async(to, from, next) => {
+  console.log('requireAuthが呼ばれています!')
+  
+  next()
+}
+
 const routes = [
   {
     path: '/',
@@ -11,7 +18,9 @@ const routes = [
   {
     path: '/chatroom',
     name: 'Chatroom',
-    component: ChatroomPage
+    component: ChatroomPage,
+    // 設定されているルートにアクセスする前に呼び出されるメソッド
+    beforeEnter: requireAuth
   }
 ]
 
